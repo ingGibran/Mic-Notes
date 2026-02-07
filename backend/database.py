@@ -6,7 +6,7 @@ from datetime import datetime
 class Usuarios(SQLModel, table=True):
     id_usuarios: int | None = Field(default=None, primary_key=True)
     username: str
-    hash_password: str
+    password: str
 
 # Notas
 class Notas(SQLModel, table=True):
