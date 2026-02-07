@@ -6,13 +6,6 @@ class crear_nota_schema(SQLModel):
     titulo: str
     contenido: str
     id_usuario: int
-    
-
-class leer_nota_schema(SQLModel):
-    id: int
-    titulo: str
-    contenido: str
-    fecha_registro: datetime
 
 class actualizar_nota_schema(SQLModel):
     id: int
