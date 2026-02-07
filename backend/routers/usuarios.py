@@ -39,7 +39,7 @@ async def login(usuario_login: validar_usuario_schema, db: Session = Depends(get
     if not es_valida:
         raise HTTPException(status_code=400, detail="Usuario o contraseña incorrectos")
     
-    return {"message": "Inicio de sesión exitoso", "user_id": usuario_db.id_usuarios}
+    return {"message": "Inicio de sesión exitoso", "user_id": usuario_db.id}
     
     
 @router_usuarios.get("/usuarios/", tags=["usuarios"], response_model=List[leer_usuarios_schema])
