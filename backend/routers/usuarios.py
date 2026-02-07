@@ -9,8 +9,10 @@ from security import hash_password, verify_password
 
 router_usuarios = APIRouter()
 
+
 @router_usuarios.post("/usuarios/crear", tags=["usuarios"])
 async def crear_usuario(usuario:crear_usuario_schema, db: Session = Depends(get_session)):
+    
     # Hashear contraseña
     db_usuario = Usuarios.model_validate(usuario)
     hashed_password = hash_password(db_usuario.password)
@@ -22,8 +24,10 @@ async def crear_usuario(usuario:crear_usuario_schema, db: Session = Depends(get_
     db.refresh(db_usuario)
     return usuario
 
+
 @router_usuarios.post("/usuarios/iniciar_sesion", tags=["usuarios"])
 async def login(usuario_login: validar_usuario_schema, db: Session = Depends(get_session)):
+    
     # Buscar usuario
     statement = select(Usuarios).where(Usuarios.username == usuario_login.username)
     usuario_db = db.exec(statement).first()
@@ -44,6 +48,7 @@ async def login(usuario_login: validar_usuario_schema, db: Session = Depends(get
     
 @router_usuarios.get("/usuarios/", tags=["usuarios"], response_model=List[leer_usuarios_schema])
 async def leer_usuarios(db: Session = Depends(get_session)):
+    
     usuarios = db.exec(select(Usuarios)).all()
     return usuarios
 

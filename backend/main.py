@@ -2,6 +2,7 @@ from fastapi import FastAPI
 
 from database import create_db_and_tables
 from routers.usuarios import router_usuarios
+from routers.notas import router_notas
 
 from contextlib import asynccontextmanager
 
@@ -16,3 +17,4 @@ app = FastAPI(lifespan=lifespan)
 
 # Incluir los routers a la instancia
 app.include_router(router_usuarios)
+app.include_router(router_notas)
